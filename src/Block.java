@@ -14,8 +14,11 @@ public class Block {
     }
 
     public String calculateHash(){
-        String calculatedhash = StringUtil.applySha256(previousHash + Long.toString(timeStamp) + data);
-        return calculatedhash;
+        String input = previousHash
+                    + Long.toString(timeStamp)
+                    + Integer.toString(nonce)
+                    + data;
+        return StringUtil.applySha256(input);
     }
 
     public void mineBlock(int difficulty){
